@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 25, 2022 9:50:18 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="app.pojos.Groups" table="groups" catalog="chat_app_db" optimistic-lock="version">
+        <id name="GId" type="java.lang.Integer">
+            <column name="g_id" />
+            <generator class="identity" />
+        </id>
+        <property name="GName" type="string">
+            <column name="g_name" length="30" not-null="true" />
+        </property>
+        <property name="GDesctiption" type="string">
+            <column name="g_desctiption" length="200" not-null="true" />
+        </property>
+        <property name="GStat" type="int">
+            <column name="g_stat" not-null="true" />
+        </property>
+        <property name="GCreatedDate" type="date">
+            <column name="g_created_date" length="10" not-null="true" />
+        </property>
+        <property name="GCreatedTime" type="time">
+            <column name="g_created_time" length="8" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
