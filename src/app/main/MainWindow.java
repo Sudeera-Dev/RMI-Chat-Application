@@ -10,6 +10,7 @@ import app.pojos.Users;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author KrzYoFreaK
  */
 public class MainWindow extends javax.swing.JFrame {
-
+    static Users logusr = new Users();
     /**
      * Creates new form MainWindow
      */
@@ -81,7 +82,7 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         chnlCreateBtn = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        inxDetailsLbl = new javax.swing.JLabel();
         settingsBtn = new javax.swing.JLabel();
         chnlChatPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -106,17 +107,17 @@ public class MainWindow extends javax.swing.JFrame {
         userSettingsPanel = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
+        uUnameTxt = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        uNnameTxt = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        uPassTxt = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
-        jLabel25 = new javax.swing.JLabel();
+        uUserImgLbl = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
+        uUpdateBtn = new javax.swing.JLabel();
         backBtn1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -518,9 +519,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 153, 255));
-        jLabel12.setText("Admin | Sudeera");
+        inxDetailsLbl.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
+        inxDetailsLbl.setForeground(new java.awt.Color(0, 153, 255));
+        inxDetailsLbl.setText("Admin | Sudeera");
 
         settingsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/settingBtn2.png"))); // NOI18N
         settingsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -546,7 +547,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(indexPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
+                        .addComponent(inxDetailsLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(settingsBtn)))
                 .addContainerGap())
@@ -557,7 +558,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addGap(20, 20, 20)
                 .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
+                    .addComponent(inxDetailsLbl)
                     .addComponent(settingsBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -804,40 +805,40 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField8.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(50, 204, 255));
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField8.setText("Username");
-        jTextField8.setBorder(null);
+        uUnameTxt.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
+        uUnameTxt.setForeground(new java.awt.Color(50, 204, 255));
+        uUnameTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        uUnameTxt.setText("Username");
+        uUnameTxt.setBorder(null);
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/line.png"))); // NOI18N
         jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/line.png"))); // NOI18N
 
-        jTextField9.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(50, 204, 255));
-        jTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField9.setText("Nickname");
-        jTextField9.setBorder(null);
+        uNnameTxt.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
+        uNnameTxt.setForeground(new java.awt.Color(50, 204, 255));
+        uNnameTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        uNnameTxt.setText("Nickname");
+        uNnameTxt.setBorder(null);
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/line.png"))); // NOI18N
         jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jTextField10.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(50, 204, 255));
-        jTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField10.setText("Password");
-        jTextField10.setBorder(null);
+        uPassTxt.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
+        uPassTxt.setForeground(new java.awt.Color(50, 204, 255));
+        uPassTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        uPassTxt.setText("Password");
+        uPassTxt.setBorder(null);
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/profile.png"))); // NOI18N
-        jLabel25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        uUserImgLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/profile.png"))); // NOI18N
+        uUserImgLbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/profile_mask.png"))); // NOI18N
 
-        jLayeredPane3.setLayer(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(uUserImgLbl, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(jLabel26, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane3Layout = new javax.swing.GroupLayout(jLayeredPane3);
@@ -848,7 +849,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane3Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel25)
+                    .addComponent(uUserImgLbl)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane3Layout.createSequentialGroup()
@@ -862,7 +863,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane3Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel25)
+                    .addComponent(uUserImgLbl)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane3Layout.createSequentialGroup()
@@ -891,8 +892,13 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/updateBtn.png"))); // NOI18N
-        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        uUpdateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/updateBtn.png"))); // NOI18N
+        uUpdateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        uUpdateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                uUpdateBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -906,17 +912,17 @@ public class MainWindow extends javax.swing.JFrame {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel24)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(uPassTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 2, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(uUnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)))
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(uNnameTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
@@ -924,7 +930,7 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
-                                .addComponent(jLabel27)))
+                                .addComponent(uUpdateBtn)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -934,19 +940,19 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(uUnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(uNnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(uPassTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel27)
+                .addComponent(uUpdateBtn)
                 .addContainerGap(122, Short.MAX_VALUE))
         );
 
@@ -1109,6 +1115,7 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code 
         String uname=loginUnameTxt.getText();
         String upass=loginPassTxt.getText();
+        boolean stat= false;
         
         if(uname.isEmpty()){
             errorLbl.setText("Username is Empty");
@@ -1119,25 +1126,59 @@ public class MainWindow extends javax.swing.JFrame {
             for (Iterator it = uh.userDetails().iterator(); it.hasNext();) {
                 Users temp = (Users) it.next();
                 if(uname.equals(temp.getName())){
-                    if(!upass.equals(temp.getPassword())){
-                        errorLbl.setText("Password Incorrect");
-                    }else{
-                        if(temp.getRole().equals("admin")){
-                            chnlCreateBtn.setVisible(true);
-                        }else{
-                            chnlCreateBtn.setVisible(false);
-                        }
-                        loginPanel.setVisible(false);
-                        indexPanel.setVisible(true);
-                    }
+                    stat=true;
+                    logusr = temp;
                 }else{
+                    stat=false;
                     errorLbl.setText("User not found");
                 }
+                  
             }
+            if(stat = true){
+                if(!upass.equals(logusr.getPassword())){
+                    errorLbl.setText("Password Incorrect");
+                }else{
+                    if(logusr.getRole().equals("admin")){
+                        chnlCreateBtn.setVisible(true);
+                    }else{
+                        chnlCreateBtn.setVisible(false);
+                    }
+                    inxDetailsLbl.setText(logusr.getRole()+" | "+logusr.getName());
+                    settingsPanelLoad();
+                    loginPanel.setVisible(false);
+                    indexPanel.setVisible(true);
+                    }
+                
+                    
+                }
         }
         
     }//GEN-LAST:event_loginBtnMouseClicked
 
+    private void settingsPanelLoad(){
+        uUnameTxt.setText(logusr.getName());
+        uNnameTxt.setText(logusr.getNickname());
+        uPassTxt.setText(logusr.getPassword());
+        uUserImgLbl.setText(null); // remove label text
+        ImageIcon iconresized = new ImageIcon(toImageIcon(logusr.getPic()).getImage().getScaledInstance(64, 64, Image.SCALE_DEFAULT));
+        uUserImgLbl.setIcon(iconresized);
+    }
+    
+    public ImageIcon toImageIcon(byte[] img) {
+        BufferedImage Imgavatar;
+        ImageIcon avatar = null;
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(img);
+            Imgavatar = ImageIO.read(bis);
+            if (Imgavatar != null) {
+                avatar = new ImageIcon(Imgavatar);
+            }
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+        return avatar;
+    }
+    
     private void chnlCreateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chnlCreateBtnMouseClicked
         // TODO add your handling code here:
         indexPanel.setVisible(false);
@@ -1174,55 +1215,43 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void suBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suBtnMouseClicked
         // TODO add your handling code here:
-        Boolean aReg = false;
         String uname = suUnameTxt.getText();
         String unname = suNnameTxt.getText();
         String upass = suPasstxt.getText();
-        
+        int id= logusr.getId();
+        UsersHandler uh = new UsersHandler();
         if(uname.isEmpty()){
             errorLblsu.setText("Username cannot be Empty");
         }else if(unname.isEmpty()){
             errorLblsu.setText("Nickname cannot be Empty");
         }else if(upass.isEmpty()){
             errorLblsu.setText("Password cannot be Empty");
-        }else{
-            UsersHandler uh = new UsersHandler();
-            for (Iterator it = uh.userDetails().iterator(); it.hasNext();) {
-                Users temp = (Users) it.next();
-                if(uname.equals(temp.getName())){
-                    errorLblsu.setText("user already registered");
-                    aReg = true;
-                    break;
-                }
-            }
-            
-            if(aReg == false){
-                if(upass.length() < 8){
-                    errorLblsu.setText("password must be 8-10 charactors long");
-                }else if(upass.length() > 10){
-                    errorLblsu.setText("password must be 8-10 charactors long");
-                }else{
-                    byte[] img = null;
-                    ImageIcon avatar = (ImageIcon) prpPiclbl.getIcon();
-                    if (avatar != null) {
-                        try {
-                        //img = this.encodeToString(this.ImageIconToBufferedImage(avatar),"jpg");
-                            BufferedImage bImage = ImageIconToBufferedImage(avatar);
-                            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                            ImageIO.write(bImage, "jpg", bos);
-                            img = bos.toByteArray();
-                            boolean result=uh.insertUser(img,uname,upass,unname);
-                            if(result == true){
-                                errorLblsu.setText("Successfully registerd to the System");
-                            }else{
-                                errorLblsu.setText("Can't connect to the System");
-                            }
-                        } catch (IOException ex) {
-                            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }else{ 
+            if(upass.length() < 8){
+                errorLblsu.setText("password must be 8-10 charactors long");
+            }else if(upass.length() > 10){
+                errorLblsu.setText("password must be 8-10 charactors long");
+            }else{
+                byte[] img = null;
+                ImageIcon avatar = (ImageIcon) uUserImgLbl.getIcon();
+                if (avatar != null) {
+                    try {
+                    //img = this.encodeToString(this.ImageIconToBufferedImage(avatar),"jpg");
+                        BufferedImage bImage = ImageIconToBufferedImage(avatar);
+                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                        ImageIO.write(bImage, "jpg", bos);
+                        img = bos.toByteArray();
+                        boolean result=uh.updateUser(id,img,uname,upass,unname);
+                        if(result == true){
+                            errorLblsu.setText("Details successfully updated");
+                        }else{
+                            errorLblsu.setText("Can't connect to the System");
                         }
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-            }
+            }  
         }
     }//GEN-LAST:event_suBtnMouseClicked
 
@@ -1266,6 +1295,11 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_prpPiclblMouseClicked
+
+    private void uUpdateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uUpdateBtnMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_uUpdateBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1312,10 +1346,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel errorLbl;
     private javax.swing.JLabel errorLblsu;
     private javax.swing.JPanel indexPanel;
+    private javax.swing.JLabel inxDetailsLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1329,9 +1363,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1354,11 +1386,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JPasswordField loginPassTxt;
@@ -1372,6 +1401,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField suNnameTxt;
     private javax.swing.JTextField suPasstxt;
     private javax.swing.JTextField suUnameTxt;
+    private javax.swing.JTextField uNnameTxt;
+    private javax.swing.JTextField uPassTxt;
+    private javax.swing.JTextField uUnameTxt;
+    private javax.swing.JLabel uUpdateBtn;
+    private javax.swing.JLabel uUserImgLbl;
     private javax.swing.JPanel userSettingsPanel;
     // End of variables declaration//GEN-END:variables
 }

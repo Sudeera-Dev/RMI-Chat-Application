@@ -42,5 +42,21 @@ public class UsersHandler {
             s.close();
             return true;
         }
+        
+        public Boolean updateUser(int id,byte[] pic,String uname,String upass,String unname){
+            Session s = Connect.getSessionFactory().openSession();
+            Transaction t = s.beginTransaction();
+            
+            Users usr = (Users) s.load(Users.class, id);
+            usr.setName(uname);
+            usr.setNickname(unname);
+            usr.setPassword(upass);
+            usr.setPic(pic);
+            
+            s.save(usr);
+            t.commit();
+            s.close();
+            return true;
+        }
     
 }
