@@ -5,7 +5,9 @@
  */
 package app.main;
 
+import app.dbManager.GroupsHandler;
 import app.dbManager.UsersHandler;
+import app.pojos.Groups;
 import app.pojos.Users;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -98,11 +100,12 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        chNameTxt = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        chDescTxt = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
+        chErrorLbl = new javax.swing.JLabel();
         backBtn = new javax.swing.JLabel();
         userSettingsPanel = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
@@ -118,6 +121,7 @@ public class MainWindow extends javax.swing.JFrame {
         uUserImgLbl = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         uUpdateBtn = new javax.swing.JLabel();
+        uErrorLbl = new javax.swing.JLabel();
         backBtn1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -692,23 +696,32 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/createBtn.png"))); // NOI18N
         jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel19MouseClicked(evt);
+            }
+        });
 
-        jTextField6.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(50, 204, 255));
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField6.setText("Channel Name");
-        jTextField6.setBorder(null);
+        chNameTxt.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
+        chNameTxt.setForeground(new java.awt.Color(50, 204, 255));
+        chNameTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        chNameTxt.setText("Channel Name");
+        chNameTxt.setBorder(null);
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/line.png"))); // NOI18N
         jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/line.png"))); // NOI18N
 
-        jTextField7.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(50, 204, 255));
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setText("Description");
-        jTextField7.setBorder(null);
+        chDescTxt.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
+        chDescTxt.setForeground(new java.awt.Color(50, 204, 255));
+        chDescTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        chDescTxt.setText("Description");
+        chDescTxt.setBorder(null);
+
+        chErrorLbl.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
+        chErrorLbl.setForeground(new java.awt.Color(255, 51, 51));
+        chErrorLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -718,16 +731,17 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(chNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chDescTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(jLabel19)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(chErrorLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                     .addContainerGap(117, Short.MAX_VALUE)
@@ -738,16 +752,18 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(103, 103, 103)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chDescTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel19)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(chErrorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                     .addContainerGap(278, Short.MAX_VALUE)
@@ -900,6 +916,10 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        uErrorLbl.setFont(new java.awt.Font("Gadugi", 1, 15)); // NOI18N
+        uErrorLbl.setForeground(new java.awt.Color(255, 51, 51));
+        uErrorLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -933,6 +953,7 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addComponent(uUpdateBtn)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(uErrorLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -953,7 +974,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(uUpdateBtn)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(uErrorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         backBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/backBtn.png"))); // NOI18N
@@ -974,18 +997,18 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(userSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSettingsPanelLayout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(112, 112, 112))
+                        .addGap(111, 111, 111))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSettingsPanelLayout.createSequentialGroup()
                         .addComponent(backBtn1)
-                        .addGap(29, 29, 29))))
+                        .addGap(28, 28, 28))))
         );
         userSettingsPanelLayout.setVerticalGroup(
             userSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userSettingsPanelLayout.createSequentialGroup()
                 .addComponent(jLabel21)
-                .addGap(78, 78, 78)
+                .addGap(91, 91, 91)
                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(93, 93, 93)
+                .addGap(80, 80, 80)
                 .addComponent(backBtn1)
                 .addGap(24, 24, 24))
         );
@@ -1140,7 +1163,6 @@ public class MainWindow extends javax.swing.JFrame {
                     }else{
                         chnlCreateBtn.setVisible(false);
                     }
-                    inxDetailsLbl.setText(logusr.getRole()+" | "+logusr.getName());
                     settingsPanelLoad();
                     loginPanel.setVisible(false);
                     indexPanel.setVisible(true);
@@ -1155,6 +1177,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBtnMouseClicked
 
     private void settingsPanelLoad(){
+        inxDetailsLbl.setText(logusr.getRole()+" | "+logusr.getName());
         uUnameTxt.setText(logusr.getName());
         uNnameTxt.setText(logusr.getNickname());
         uPassTxt.setText(logusr.getPassword());
@@ -1307,8 +1330,92 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void uUpdateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uUpdateBtnMouseClicked
         // TODO add your handling code here:
-     
+        String uname = uUnameTxt.getText();
+        String unname = uNnameTxt.getText();
+        String upass = uPassTxt.getText();
+        Boolean stat = false;
+        UsersHandler uh = new UsersHandler();
+        for (Iterator it = uh.userDetails().iterator(); it.hasNext();) {
+            Users temp = (Users) it.next();
+            if(uname.equals(temp.getName()) && !logusr.getName().equals(temp.getName())){
+                    stat =true;
+                    break;
+            }
+        }
+        if(stat == false){
+            if(uname.isEmpty()){
+                uErrorLbl.setText("Username cannot be Empty");
+            }else if(unname.isEmpty()){
+                uErrorLbl.setText("Nickname cannot be Empty");
+            }else if(upass.isEmpty()){
+                uErrorLbl.setText("Password cannot be Empty");
+            }else{ 
+                if(upass.length() < 8){
+                    uErrorLbl.setText("password must be 8-10 charactors long");
+                }else if(upass.length() > 10){
+                    uErrorLbl.setText("password must be 8-10 charactors long");
+                }else{
+                    byte[] img = null;
+                    ImageIcon avatar = (ImageIcon) uUserImgLbl.getIcon();
+                    if (avatar != null) {
+                        try {
+                            //img = this.encodeToString(this.ImageIconToBufferedImage(avatar),"jpg");
+                            BufferedImage bImage = ImageIconToBufferedImage(avatar);
+                            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                            ImageIO.write(bImage, "jpg", bos);
+                            img = bos.toByteArray();
+                            boolean result=uh.updateUser(logusr.getId(),img,uname,upass,unname);
+                            if(result == true){
+                                logusr.setName(uname);
+                                logusr.setNickname(unname);
+                                settingsPanelLoad();
+                                uErrorLbl.setText("Details successfully updated");
+                            }else{
+                                uErrorLbl.setText("Can't connect to the System");
+                            }
+                        } catch (IOException ex) {
+                            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                        } 
+                    }
+                }  
+            }
+        }else{
+            uErrorLbl.setText("Username already registered");
+        }
     }//GEN-LAST:event_uUpdateBtnMouseClicked
+
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+        // TODO add your handling code here:
+        String chName=chNameTxt.getText();
+        String chDesc=chDescTxt.getText();
+        Boolean stat = false;
+        GroupsHandler gh = new GroupsHandler();
+        
+        if(chName.isEmpty()){
+            chErrorLbl.setText("Channel Name can't be empty");
+        }else if(chDesc.isEmpty()){
+            chErrorLbl.setText("Channel Description can't be empty");
+        }else{
+            for (Iterator it = gh.groupDetails().iterator(); it.hasNext();) {
+                Groups temp = (Groups) it.next();
+                if(chName.equals(temp.getName())){
+                    stat =true;
+                    break;
+                }
+            }
+            
+            if(stat == false){
+                Boolean result=gh.createGroup(chName,chDesc);
+                if(result== true){
+                    chErrorLbl.setText("Chat Created");
+                }else{
+                    chErrorLbl.setText("Error");
+                }
+            }else{
+                chErrorLbl.setText("Chat name not available"); 
+            }
+        }        
+    }//GEN-LAST:event_jLabel19MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1348,6 +1455,9 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backBtn;
     private javax.swing.JLabel backBtn1;
+    private javax.swing.JTextField chDescTxt;
+    private javax.swing.JLabel chErrorLbl;
+    private javax.swing.JTextField chNameTxt;
     private javax.swing.JPanel chnlChatPanel;
     private javax.swing.JLabel chnlCreateBtn;
     private javax.swing.JLabel chnlCreateBtn1;
@@ -1395,8 +1505,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JPasswordField loginPassTxt;
@@ -1410,6 +1518,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField suNnameTxt;
     private javax.swing.JTextField suPasstxt;
     private javax.swing.JTextField suUnameTxt;
+    private javax.swing.JLabel uErrorLbl;
     private javax.swing.JTextField uNnameTxt;
     private javax.swing.JTextField uPassTxt;
     private javax.swing.JTextField uUnameTxt;
