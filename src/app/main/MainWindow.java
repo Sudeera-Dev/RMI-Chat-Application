@@ -39,7 +39,7 @@ public class MainWindow extends javax.swing.JFrame {
         indexPanel.setVisible(false);
         chnlChatPanel.setVisible(false);
         createChnlPanel.setVisible(false);
-        userSettingsPanel.setVisible(false);
+        userSettingsPanel.setVisible(true);
     }
 
     /**
