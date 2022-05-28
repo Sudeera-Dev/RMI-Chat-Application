@@ -1191,9 +1191,42 @@ public class MainWindow extends javax.swing.JFrame {
         loadGroups();
     }
     
+    int y1 = 13;
     private void loadGroups(){
         GroupsHandler gh = new GroupsHandler();
         List group = gh.groupDetails();
+        
+        for (Iterator iterator = group.iterator(); iterator.hasNext();) {
+            Groups next = (Groups) iterator.next();
+            
+            JPanel client_grp_panel = new javax.swing.JPanel();
+            client_grp_panel.setBackground(new java.awt.Color(66, 72, 245));
+            client_grp_panel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            client_grp_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+            
+            JLabel grp_dec = new javax.swing.JLabel();
+            grp_dec.setForeground(new java.awt.Color(255, 255, 255));
+            grp_dec.setText(next.getDescription());
+
+            JLabel statuts_txt = new javax.swing.JLabel();
+            statuts_txt.setBackground(new java.awt.Color(28, 36, 47));
+            statuts_txt.setForeground(new java.awt.Color(255, 255, 255));
+            
+            JLabel grp_name = new javax.swing.JLabel();
+            grp_name.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+            grp_name.setForeground(new java.awt.Color(255, 255, 255));
+            grp_name.setText(next.getName());
+
+           
+            client_grp_panel.add(grp_dec, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 42, 160, 35));
+            client_grp_panel.add(statuts_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 13, 51, -1));       
+            client_grp_panel.add(grp_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 160, -1));
+            groupListPnl.add(client_grp_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, y1, 299, 96));
+
+            y1 += 110;
+        }
+        
+        
         
     }
     
