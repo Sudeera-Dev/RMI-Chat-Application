@@ -1115,8 +1115,7 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code 
         String uname=loginUnameTxt.getText();
         String upass=loginPassTxt.getText();
-        boolean stat= false;
-        
+        Boolean stat= false;
         if(uname.isEmpty()){
             errorLbl.setText("Username is Empty");
         }else if(upass.isEmpty()){
@@ -1126,15 +1125,13 @@ public class MainWindow extends javax.swing.JFrame {
             for (Iterator it = uh.userDetails().iterator(); it.hasNext();) {
                 Users temp = (Users) it.next();
                 if(uname.equals(temp.getName())){
-                    stat=true;
                     logusr = temp;
-                }else{
-                    stat=false;
-                    errorLbl.setText("User not found");
+                    stat=true;
+                    break;
                 }
                   
             }
-            if(stat = true){
+            if ( stat == true){
                 if(!upass.equals(logusr.getPassword())){
                     errorLbl.setText("Password Incorrect");
                 }else{
@@ -1147,10 +1144,12 @@ public class MainWindow extends javax.swing.JFrame {
                     settingsPanelLoad();
                     loginPanel.setVisible(false);
                     indexPanel.setVisible(true);
-                    }
-                
-                    
                 }
+            }else{
+                errorLbl.setText("User not found");
+            }
+            
+            
         }
         
     }//GEN-LAST:event_loginBtnMouseClicked
@@ -1218,40 +1217,50 @@ public class MainWindow extends javax.swing.JFrame {
         String uname = suUnameTxt.getText();
         String unname = suNnameTxt.getText();
         String upass = suPasstxt.getText();
-        int id= logusr.getId();
+        Boolean stat = false;
         UsersHandler uh = new UsersHandler();
-        if(uname.isEmpty()){
-            errorLblsu.setText("Username cannot be Empty");
-        }else if(unname.isEmpty()){
-            errorLblsu.setText("Nickname cannot be Empty");
-        }else if(upass.isEmpty()){
-            errorLblsu.setText("Password cannot be Empty");
-        }else{ 
-            if(upass.length() < 8){
-                errorLblsu.setText("password must be 8-10 charactors long");
-            }else if(upass.length() > 10){
-                errorLblsu.setText("password must be 8-10 charactors long");
-            }else{
-                byte[] img = null;
-                ImageIcon avatar = (ImageIcon) uUserImgLbl.getIcon();
-                if (avatar != null) {
-                    try {
-                    //img = this.encodeToString(this.ImageIconToBufferedImage(avatar),"jpg");
-                        BufferedImage bImage = ImageIconToBufferedImage(avatar);
-                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                        ImageIO.write(bImage, "jpg", bos);
-                        img = bos.toByteArray();
-                        boolean result=uh.updateUser(id,img,uname,upass,unname);
-                        if(result == true){
-                            errorLblsu.setText("Details successfully updated");
-                        }else{
-                            errorLblsu.setText("Can't connect to the System");
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        for (Iterator it = uh.userDetails().iterator(); it.hasNext();) {
+            Users temp = (Users) it.next();
+            if(uname.equals(temp.getName())){
+                    errorLblsu.setText("Username already registered");
+                    stat =true;
+                    break;
+            }
+        }
+        if(stat == false){
+            if(uname.isEmpty()){
+                errorLblsu.setText("Username cannot be Empty");
+            }else if(unname.isEmpty()){
+                errorLblsu.setText("Nickname cannot be Empty");
+            }else if(upass.isEmpty()){
+                errorLblsu.setText("Password cannot be Empty");
+            }else{ 
+                if(upass.length() < 8){
+                    errorLblsu.setText("password must be 8-10 charactors long");
+                }else if(upass.length() > 10){
+                    errorLblsu.setText("password must be 8-10 charactors long");
+                }else{
+                    byte[] img = null;
+                    ImageIcon avatar = (ImageIcon) uUserImgLbl.getIcon();
+                    if (avatar != null) {
+                        try {
+                            //img = this.encodeToString(this.ImageIconToBufferedImage(avatar),"jpg");
+                            BufferedImage bImage = ImageIconToBufferedImage(avatar);
+                            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                            ImageIO.write(bImage, "jpg", bos);
+                            img = bos.toByteArray();
+                            boolean result=uh.insertUser(img,uname,upass,unname);
+                            if(result == true){
+                                errorLblsu.setText("Details successfully updated");
+                            }else{
+                                errorLblsu.setText("Can't connect to the System");
+                            }
+                        } catch (IOException ex) {
+                            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                        } 
                     }
-                }
-            }  
+                }  
+            }
         }
     }//GEN-LAST:event_suBtnMouseClicked
 
@@ -1298,7 +1307,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void uUpdateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uUpdateBtnMouseClicked
         // TODO add your handling code here:
-        
+     
     }//GEN-LAST:event_uUpdateBtnMouseClicked
 
     /**
