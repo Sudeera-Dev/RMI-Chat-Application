@@ -11,17 +11,22 @@ import app.pojos.Groups;
 import app.pojos.Users;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -82,7 +87,7 @@ public class MainWindow extends javax.swing.JFrame {
         indexPanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel5 = new javax.swing.JPanel();
+        groupListPnl = new javax.swing.JPanel();
         chnlCreateBtn = new javax.swing.JLabel();
         inxDetailsLbl = new javax.swing.JLabel();
         settingsBtn = new javax.swing.JLabel();
@@ -497,23 +502,22 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(478, 459));
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setMaximumSize(new java.awt.Dimension(478, 400));
-        jPanel5.setMinimumSize(new java.awt.Dimension(478, 400));
-        jPanel5.setPreferredSize(new java.awt.Dimension(480, 400));
+        groupListPnl.setBackground(new java.awt.Color(255, 255, 255));
+        groupListPnl.setMinimumSize(new java.awt.Dimension(478, 400));
+        groupListPnl.setPreferredSize(new java.awt.Dimension(480, 400));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout groupListPnlLayout = new javax.swing.GroupLayout(groupListPnl);
+        groupListPnl.setLayout(groupListPnlLayout);
+        groupListPnlLayout.setHorizontalGroup(
+            groupListPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 480, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        groupListPnlLayout.setVerticalGroup(
+            groupListPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 485, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setViewportView(jPanel5);
+        jScrollPane1.setViewportView(groupListPnl);
 
         chnlCreateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/chatCreateButton.png"))); // NOI18N
         chnlCreateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1184,6 +1188,13 @@ public class MainWindow extends javax.swing.JFrame {
         uUserImgLbl.setText(null); // remove label text
         ImageIcon iconresized = new ImageIcon(toImageIcon(logusr.getPic()).getImage().getScaledInstance(64, 64, Image.SCALE_DEFAULT));
         uUserImgLbl.setIcon(iconresized);
+        loadGroups();
+    }
+    
+    private void loadGroups(){
+        GroupsHandler gh = new GroupsHandler();
+        List group = gh.groupDetails();
+        
     }
     
     public ImageIcon toImageIcon(byte[] img) {
@@ -1464,6 +1475,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel createChnlPanel;
     private javax.swing.JLabel errorLbl;
     private javax.swing.JLabel errorLblsu;
+    private javax.swing.JPanel groupListPnl;
     private javax.swing.JPanel indexPanel;
     private javax.swing.JLabel inxDetailsLbl;
     private javax.swing.JLabel jLabel1;
@@ -1497,7 +1509,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
