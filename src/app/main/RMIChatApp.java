@@ -5,9 +5,6 @@
  */
 package app.main;
 
-import java.awt.Dimension;
-import javax.swing.JFrame;
-
 /**
  *
  * @author KrzYoFreaK

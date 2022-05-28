@@ -76,4 +76,18 @@ public class GroupsHandler {
         s.close();
         return true;
     }
+    
+    public Boolean updateGroupStat(int id,int stat){
+        Session s = Connect.getSessionFactory().openSession();
+        Transaction t = s.beginTransaction();
+        
+        Groups grp = (Groups) s.load(Groups.class, id);
+        
+        grp.setStatus(stat);
+        s.save(grp);
+        t.commit();
+        s.close();
+        return null;
+        
+    }
 }
