@@ -13,6 +13,7 @@ import app.services.Chat;
 import app.services.ChatService;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.AdjustmentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -408,7 +409,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 104, Short.MAX_VALUE)
+            .addGap(0, 112, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addContainerGap()
@@ -417,7 +418,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
+            .addGap(0, 90, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -576,7 +577,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(indexPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(indexPanelLayout.createSequentialGroup()
                         .addComponent(inxDetailsLbl)
                         .addGap(28, 28, 28)
@@ -612,18 +613,7 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         chtPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout chtPanelLayout = new javax.swing.GroupLayout(chtPanel);
-        chtPanel.setLayout(chtPanelLayout);
-        chtPanelLayout.setHorizontalGroup(
-            chtPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
-        );
-        chtPanelLayout.setVerticalGroup(
-            chtPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
-        );
-
+        chtPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jScrollPane2.setViewportView(chtPanel);
 
         chnlCreateBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/img/sendBtn.png"))); // NOI18N
@@ -664,7 +654,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(chatSendTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -678,20 +668,22 @@ public class MainWindow extends javax.swing.JFrame {
         chnlChatPanel.setLayout(chnlChatPanelLayout);
         chnlChatPanelLayout.setHorizontalGroup(
             chnlChatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11)
+            .addGroup(chnlChatPanelLayout.createSequentialGroup()
+                .addComponent(jLabel11)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(chnlChatPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(chnlChatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chnlChatPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(chnlChatPanelLayout.createSequentialGroup()
                         .addComponent(chatPnlHead)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chnlChatPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(chnlCreateBtn1)
+                        .addGroup(chnlChatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(chnlChatPanelLayout.createSequentialGroup()
+                                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(chnlCreateBtn1)))
                         .addGap(28, 28, 28))))
         );
         chnlChatPanelLayout.setVerticalGroup(
@@ -704,13 +696,13 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(chnlChatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chnlChatPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(chnlCreateBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(18, Short.MAX_VALUE))
+                        .addContainerGap(20, Short.MAX_VALUE))
                     .addGroup(chnlChatPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(11, 11, 11)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(17, Short.MAX_VALUE))))
         );
 
         createChnlPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -759,7 +751,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(chNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1257,10 +1249,10 @@ public class MainWindow extends javax.swing.JFrame {
             g_name.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
             g_name.setForeground(new java.awt.Color(255, 255, 255));
             g_name.setText(next.getName());
-            group.add(g_action, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, 29));
+            group.add(g_action, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, 29));
             group.add(g_des, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 36, 163, 33));
             group.add(g_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 160, -1));
-            groupListPnl.add(group, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, y, 400, 90));
+            groupListPnl.add(group, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, y, 300, 90));
 
             y += 110;
         }
@@ -1294,6 +1286,11 @@ public class MainWindow extends javax.swing.JFrame {
         List chats = gh.groupDetails();
 
         groupListPnl.removeAll();
+        
+                  
+        jScrollPane1.getVerticalScrollBar().addAdjustmentListener((AdjustmentEvent e) -> {
+            e.getAdjustable().setValue(e.getAdjustable().getMaximum());
+        });
 
         for (Iterator iterator = chats.iterator(); iterator.hasNext();) {
             Groups next = (Groups) iterator.next();
@@ -1306,6 +1303,7 @@ public class MainWindow extends javax.swing.JFrame {
             client_grp_panel.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
                     enter_to_chat(next.getId());
+                    chatPnlHead.setText(next.getName()+" | "+next.getDescription());
 
                 }
             });
@@ -1457,11 +1455,12 @@ public class MainWindow extends javax.swing.JFrame {
         UsersHandler uh = new UsersHandler();
         
         List data = uh.userDetails();
-        Iterator i = data.iterator();
-        if (i.hasNext()) {
-            Users user = (Users) i.next();
-            ImageIcon iconresized = new ImageIcon(toImageIcon(user.getPic()).getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
-            msg_dp.setIcon(iconresized);
+        for (Iterator it = uh.userDetails().iterator(); it.hasNext();) {
+            Users user = (Users) it.next();
+            if(user.getId()==msg.getUserid()){
+                ImageIcon iconresized = new ImageIcon(toImageIcon(user.getPic()).getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+                msg_dp.setIcon(iconresized);
+            }
         }
 
         JPanel msg_layer = new javax.swing.JPanel();
@@ -1522,7 +1521,7 @@ public class MainWindow extends javax.swing.JFrame {
         
 
         JPanel msg_layer = new javax.swing.JPanel();
-        msg_layer.setBackground(new java.awt.Color(42, 50, 61));
+        msg_layer.setBackground(new java.awt.Color(102, 153, 255));
         msg_layer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         msg_layer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1532,7 +1531,7 @@ public class MainWindow extends javax.swing.JFrame {
         msg_layer.add(msg_dp, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 35, 35));
 
         //chat_background.add(msg_layer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 280, 110));
-        chtPanel.add(msg_layer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, y2, 280, 110));
+        chtPanel.add(msg_layer, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, y2, 280, 110));
 
         JScrollBar sb = jScrollPane2.getVerticalScrollBar();
         sb.setValue(sb.getMaximum());
