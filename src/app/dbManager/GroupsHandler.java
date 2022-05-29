@@ -6,15 +6,19 @@
 package app.dbManager;
 
 import app.connect.Connect;
+import app.main.ChatClient;
 import app.pojos.Groups;
+import app.pojos.Users;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -89,5 +93,71 @@ public class GroupsHandler {
         s.close();
         return null;
         
+    }
+    
+    public void put_offline(int id) {
+        Session s = Connect.getSessionFactory().openSession();
+        Transaction tran = s.beginTransaction();
+
+        Groups groups = (Groups) s.load(Groups.class, id);
+        groups.setStatus(0);
+
+        s.update(groups);
+        tran.commit();
+        System.out.println(id + "offline...");
+        s.close();
+    }
+    
+    public boolean is_online(int chat_id) {
+        Session s = Connect.getSessionFactory().openSession();
+        
+        List groups = s.createQuery("FROM Groups").list();
+        
+        for (Iterator it = groups.iterator(); it.hasNext();) {
+                Groups temp = (Groups) it.next();
+                if(chat_id==temp.getId()){
+                    if(temp.getStatus()== 1){
+                        return true;
+                    }
+                    return false;
+                }
+                  
+        }
+        return false;
+        
+    }
+    
+     public boolean put_online(int chat_id) {
+
+        if (check_all_offline()) {
+
+            Session s =  Connect.getSessionFactory().openSession();
+            Transaction tran = s.beginTransaction();
+
+            Groups group = (Groups) s.load(Groups.class, chat_id);
+            group.setStatus(1);
+
+            s.save(group);
+            tran.commit();
+            System.out.println(chat_id + "online...");
+            s.close();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean check_all_offline() {
+        List groups= groupDetails();
+        
+        for (Iterator it = groups.iterator(); it.hasNext();) {
+                Groups temp = (Groups) it.next();
+                if(temp.getStatus()==1){
+                    return false;
+                }
+                  
+        }
+        return true;
     }
 }
